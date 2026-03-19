@@ -1,0 +1,579 @@
+/* Section container - grid; hero→nav spacing on hero margin-bottom */
+.section {
+  display: grid;
+  row-gap: 0;
+  padding: 1px 0;
+  background-color: var(--boron);
+  max-width: 1128px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .section {
+    row-gap: 0;
+    padding: 64px 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding: 48px 0;
+  }
+}
+
+/* Title wrapper - centered fit-content (from .css-y7sknh) */
+.titleWrapper {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Double "WEB SITE" heading (from .css-hdsi9f) */
+.title {
+  font-size: 50px;
+  font-weight: 300;
+  letter-spacing: 0;
+  padding-left: 0.4em;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  animation: revealText 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes revealText {
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.title:nth-child(1) {
+  position: relative;
+  background-color: #555;
+  color: #fff;
+}
+
+.title:nth-child(2) {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  background-color: var(--boron);
+  color: #1a1a1a;
+  padding: 1px 0;
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 36px;
+  }
+}
+
+/* Section label / subtitle (from .css-hf2ktz) */
+.subtitle {
+  position: relative;
+  line-height: 1.45;
+  text-align: center;
+  white-space: nowrap;
+  color: #1a1a1a;
+}
+
+@media (max-width: 767px) {
+  .subtitle {
+    font-size: 70px;
+  }
+}
+
+/* Subtitle small text (from .css-16jradh / .css-1lzd144) */
+.subtitleLabel {
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 767px) {
+  .subtitleLabel {
+    font-size: 11px;
+  }
+}
+
+/* Hero section - two columns: title/subtitle left, full width 1080px */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  width: 100%;
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 0;
+  margin-bottom: 80px;
+  box-sizing: border-box;
+}
+
+/* Tablet: two columns, smaller type and reels */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    gap: 32px;
+    padding: 0;
+    margin-bottom: 80px;
+    min-height: 360px;
+    align-items: stretch;
+  }
+
+  .heroRight {
+    min-height: 280px;
+  }
+
+  .heroTitle {
+    font-size: 38px;
+  }
+
+  .heroSubtitle {
+    font-size: 15px;
+    margin-top: 20px;
+  }
+
+  .galleryTitle {
+    font-size: 30px;
+    padding: 0 20px 22px;
+  }
+}
+
+/* Desktop: full hero height and 3-column grid */
+@media (min-width: 1350px) {
+  .hero {
+    min-height: 400px;
+    align-items: stretch;
+  }
+
+  .heroRight {
+    min-height: 320px;
+  }
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 0;
+}
+
+.heroRight {
+  min-height: 1px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  font-family: "Figtree", sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 100%;
+  color: #1a1a1a;
+}
+
+.heroLine {
+  display: block;
+}
+
+.heroSubtitle {
+  margin: 24px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: #555;
+  max-width: 480px;
+}
+
+
+@media (max-width: 767px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 0;
+    margin-bottom: 80px;
+  }
+
+  .heroRight {
+    display: none;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .heroSubtitle {
+    margin-top: 16px;
+    font-size: 15px;
+  }
+}
+
+/* Section menu – Gallery / Design / Development (below hero) */
+/* Segmented control: striped bar + Gallery / Design / Development */
+.sectionMenu {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 4px;
+  max-width: 1128px;
+  margin: 0 0 24px;
+  padding: 0;
+  background-color: #D9D9D9;
+}
+
+.sectionMenuStripedBar {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  margin-right: 0;
+  overflow: hidden;
+}
+
+.sectionMenuStripedBar svg {
+  display: block;
+  width: 14px;
+  height: 48px;
+}
+
+.sectionMenuStripedBarRight {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.sectionMenuStripedBarRight svg {
+  display: block;
+  width: 14px;
+  height: 48px;
+}
+
+.sectionMenuLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 128px;
+  min-width: 128px;
+  height: 48px;
+  min-height: 48px;
+  padding-left: 16px;
+  background-color: #C7C6C6;
+  border: none;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #555;
+  cursor: pointer;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
+.sectionMenuLink:hover {
+  background-color: #171717;
+  color: #fff;
+}
+
+.sectionMenuLink::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: rotate(45deg);
+}
+
+.sectionMenuLinkActive {
+  background-color: #DEC312;
+  color: #1a1a1a;
+}
+
+.sectionMenuLinkActive::before {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.sectionContent {
+  max-width: 1128px;
+  margin: 0 auto;
+}
+
+.tabPlaceholder {
+  padding: 24px 24px 48px;
+}
+
+.tabPlaceholderText {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+@media (max-width: 767px) {
+  .sectionMenu {
+    padding: 0;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sectionMenuStripedBar svg {
+    width: 14px;
+    height: 48px;
+  }
+
+  .sectionMenuLink {
+    width: 128px;
+    min-width: 128px;
+    height: 48px;
+    min-height: 48px;
+    padding-left: 16px;
+    font-size: 12px;
+  }
+}
+
+/* Design Gallery section title */
+.galleryTitle {
+  font-family: "Figtree", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+  color: #1a1a1a;
+  margin: 0 auto;
+  max-width: 1128px;
+  padding: 0 24px 24px;
+}
+
+/* Card grid – <div class="...cardGrid..."> in DOM. Contains .card buttons. See WebSiteSection.tsx "CARD GRID" comment. */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1128px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+@media (max-width: 1355px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .galleryTitle {
+    font-size: 28px;
+    padding: 0 16px 20px;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0;
+  }
+}
+
+/* Card – <button> or <a>/<Link>. Contains .cardImage + .cardCaption (.cardTitle, .cardMeta). */
+.card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #fff;
+  aspect-ratio: 16 / 10;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s linear;
+}
+
+.card:hover::after {
+  opacity: 0;
+}
+
+.card:hover .cardImage,
+.card:hover .cardMedia {
+  transform: scale(1.05);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0, 0.15, 0.25, 0.99);
+}
+
+/* Video in card (first 3 gallery items); fills card like image */
+.cardMedia {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0, 0.15, 0.25, 0.99);
+}
+
+/* Card caption overlay (from .css-1cybr0r) */
+.cardCaption {
+  display: grid;
+  row-gap: 4px;
+  align-content: end;
+  font-family: var(--font-family);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  color: #fff;
+  padding: 0 12px 14px 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+
+/* Card font size: title (edit here) */
+.cardTitle {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+  .cardTitle {
+    font-size: 16px;
+  }
+}
+
+/* Card font size: meta/subtitle (edit here) */
+.cardMeta {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 0;
+  opacity: 0.9;
+}
+
+@media (max-width: 767px) {
+  .cardMeta {
+    font-size: 12px;
+  }
+}
+
+/* Full-height overlay popup */
+.overlayBackdrop {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0;
+  box-sizing: border-box;
+  animation: overlayFadeIn 0.2s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.overlayContent {
+  max-width: 900px;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  margin: auto;
+  overflow: auto;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+  animation: overlaySlideIn 0.25s ease-out;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .overlayBackdrop {
+    padding: 0;
+  }
+}
+
+@keyframes overlaySlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.overlayInner {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.overlayImage,
+.overlayVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.overlayVideo {
+  background: #1a1a1a;
+}
+
+.overlayText {
+  padding: 24px;
+}
+
+.overlayTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+  letter-spacing: 0;
+}
+
+.overlayMeta {
+  font-size: 14px;
+  margin: 0;
+  color: #555;
+  letter-spacing: 0;
+}
