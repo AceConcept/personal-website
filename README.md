@@ -1,6 +1,6 @@
 # WEB SITE Section (yui540-style)
 
-Next.js project that replicates the **WEB SITE** section structure from [yui540.com](https://yui540.com/).
+
 
 ## Structure
 
