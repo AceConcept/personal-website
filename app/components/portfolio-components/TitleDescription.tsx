@@ -64,9 +64,32 @@ export default function TitleDescription({
           {breadcrumbs.map((crumb, index) => {
             const isLast = index === breadcrumbs.length - 1;
             const isLink = Boolean(crumb.href);
+            const resolvedHref = (() => {
+              if (!crumb.href) return undefined;
+
+              // Breadcrumbs across the site should jump back to the corresponding
+              // section on the homepage, where the Gallery/Design/Development
+              // menu + smooth scroll is handled.
+              if (crumb.href === "/work" || crumb.href.startsWith("/work/")) {
+                return "/#design";
+              }
+
+              if (
+                crumb.href === "/design-gallery" ||
+                crumb.href.startsWith("/design-gallery/")
+              ) {
+                return "/#gallery";
+              }
+
+              if (crumb.href === "/dev-projects" || crumb.href.startsWith("/dev-projects/")) {
+                return "/#dev-projects";
+              }
+
+              return crumb.href;
+            })();
             const content = isLink ? (
               <a
-                href={crumb.href}
+                href={resolvedHref}
                 className={
                   isLast
                     ? "portfolio-breadcrumbs__link portfolio-breadcrumbs__link--current"
