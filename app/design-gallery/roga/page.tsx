@@ -21,7 +21,7 @@ export default function RogaDesignPage() {
       <MultipleImage
         enableOverlay
         images={[
-          { src: "/Gallery/1st Section 1 Roga.png", alt: "Roga view 1" },
+          { src: "/Gallery/Roga/1.avif", alt: "Roga view 1" },
           { src: "/Gallery/Roga/2.webp", alt: "Roga view 3" },
           { src: "/Gallery/Roga/7.webp", alt: "Roga view 7" },
           { src: "/Gallery/Roga/8.webp", alt: "Roga view 8" },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import styles from "./WebSiteSection.module.css";
@@ -14,12 +14,49 @@ export default function WebSiteSection() {
   const [openTab, setOpenTab] = useState<SectionTab | null>(null);
   const [openProjectIndex, setOpenProjectIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
+  const menuNavRef = useRef<HTMLElement | null>(null);
 
   const tabItems = openTab === "gallery" ? galleryItems : openTab === "design" ? designItems : developmentItems;
   const openProject = openTab !== null && openProjectIndex !== null && tabItems[openProjectIndex] ? tabItems[openProjectIndex] : null;
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const applyTabFromHash = () => {
+      const hash = (window.location.hash ?? "").replace("#", "");
+
+      if (hash === "gallery") {
+        setActiveTab("gallery");
+        setOpenTab(null);
+        setOpenProjectIndex(null);
+        requestAnimationFrame(() => {
+          menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      } else if (hash === "design") {
+        setActiveTab("design");
+        setOpenTab(null);
+        setOpenProjectIndex(null);
+        requestAnimationFrame(() => {
+          menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      } else if (hash === "dev-projects" || hash === "development" || hash === "dev") {
+        setActiveTab("development");
+        setOpenTab(null);
+        setOpenProjectIndex(null);
+        requestAnimationFrame(() => {
+          menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      }
+    };
+
+    // Apply immediately on mount.
+    applyTabFromHash();
+
+    // Keep in sync if the user clicks nav links later.
+    window.addEventListener("hashchange", applyTabFromHash);
+    return () => window.removeEventListener("hashchange", applyTabFromHash);
   }, []);
 
   const overlayEl =
@@ -79,7 +116,11 @@ export default function WebSiteSection() {
       </div>
 
       {/* Section menu – segmented control: Gallery / Design / Development */}
-      <nav className={styles.sectionMenu} aria-label="Section menu">
+      <nav
+        ref={menuNavRef}
+        className={styles.sectionMenu}
+        aria-label="Section menu"
+      >
         <span className={styles.sectionMenuStripedBar} aria-hidden>
           <svg width="14" height="48" viewBox="0 0 14 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="7" height="48" fill="black"/>
