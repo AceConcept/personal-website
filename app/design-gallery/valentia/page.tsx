@@ -17,10 +17,10 @@ export default function ValentiaDesignPage() {
       <MultipleImage
         enableOverlay
         images={[
-          { src: "/Gallery/Valentia/XPtWbHbkSsCLOBjiMpEhi7rQ5GA.png", alt: "Valentia dashboard view 1" },
-          { src: "/Gallery/Valentia/6aoPfrOypg3USP9NtRAuHE7o.png", alt: "Valentia dashboard view 2" },
-          { src: "/Gallery/Valentia/rREdYdoTik1vupOnJn3CRB1CCOQ.png", alt: "Valentia dashboard view 3" },
-          { src: "/Gallery/Valentia/ruVe7171IxlcZLZBRZKs3TlCU.png", alt: "Valentia dashboard view 4" },
+          { src: "/Gallery/Valentia/Valentia1.png", alt: "Valentia dashboard view 1" },
+          { src: "/Gallery/Valentia/Valentia2.png", alt: "Valentia dashboard view 2" },
+          { src: "/Gallery/Valentia/Valentia3.png", alt: "Valentia dashboard view 3" },
+          { src: "/Gallery/Valentia/Valentia4.png", alt: "Valentia dashboard view 4" },
         ]}
       />
     </main>

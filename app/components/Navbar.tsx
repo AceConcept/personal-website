@@ -91,8 +91,18 @@ export default function Navbar() {
         <a href="/#gallery">Gallery</a>
         <a href="/#design">Design</a>
         <a href="/#dev-projects">Dev Projects</a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-          Github
+        <a
+          href="https://github.com/AceConcept"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <img
+            src="/Githublogo.png"
+            alt="GitHub"
+            width={26}
+            height={26}
+          />
         </a>
         <a
           href="https://calendly.com/ace-concept"
