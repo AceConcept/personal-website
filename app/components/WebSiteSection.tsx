@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./WebSiteSection.module.css";
 import HeroReels from "./HeroReels";
 import { galleryItems, designItems, developmentItems } from "@/app/lib/gallery-data";
@@ -10,6 +11,7 @@ import { galleryItems, designItems, developmentItems } from "@/app/lib/gallery-d
 type SectionTab = "gallery" | "design" | "development";
 
 export default function WebSiteSection() {
+  const pathname = usePathname();
   const [activeTab, setActiveTab] = useState<SectionTab>("gallery");
   const [openTab, setOpenTab] = useState<SectionTab | null>(null);
   const [openProjectIndex, setOpenProjectIndex] = useState<number | null>(null);
@@ -23,41 +25,52 @@ export default function WebSiteSection() {
     setMounted(true);
   }, []);
 
+  const applyTabFromHash = useCallback(() => {
+    if (typeof window === "undefined") return;
+    const hash = (window.location.hash ?? "").replace("#", "");
+
+    if (hash === "gallery") {
+      setActiveTab("gallery");
+      setOpenTab(null);
+      setOpenProjectIndex(null);
+      requestAnimationFrame(() => {
+        menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    } else if (hash === "design") {
+      setActiveTab("design");
+      setOpenTab(null);
+      setOpenProjectIndex(null);
+      requestAnimationFrame(() => {
+        menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    } else if (hash === "dev-projects" || hash === "development" || hash === "dev") {
+      setActiveTab("development");
+      setOpenTab(null);
+      setOpenProjectIndex(null);
+      requestAnimationFrame(() => {
+        menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+  }, []);
+
   useEffect(() => {
-    const applyTabFromHash = () => {
-      const hash = (window.location.hash ?? "").replace("#", "");
-
-      if (hash === "gallery") {
-        setActiveTab("gallery");
-        setOpenTab(null);
-        setOpenProjectIndex(null);
-        requestAnimationFrame(() => {
-          menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
-      } else if (hash === "design") {
-        setActiveTab("design");
-        setOpenTab(null);
-        setOpenProjectIndex(null);
-        requestAnimationFrame(() => {
-          menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
-      } else if (hash === "dev-projects" || hash === "development" || hash === "dev") {
-        setActiveTab("development");
-        setOpenTab(null);
-        setOpenProjectIndex(null);
-        requestAnimationFrame(() => {
-          menuNavRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
-      }
-    };
-
-    // Apply immediately on mount.
     applyTabFromHash();
 
-    // Keep in sync if the user clicks nav links later.
+    // hashchange: same-page # changes
+    // popstate: Back/Forward (e.g. from /design-gallery/roga → /#gallery) — hashchange often does NOT fire here
     window.addEventListener("hashchange", applyTabFromHash);
-    return () => window.removeEventListener("hashchange", applyTabFromHash);
-  }, []);
+    window.addEventListener("popstate", applyTabFromHash);
+    return () => {
+      window.removeEventListener("hashchange", applyTabFromHash);
+      window.removeEventListener("popstate", applyTabFromHash);
+    };
+  }, [applyTabFromHash]);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    // After client navigation back to home, URL + hash are updated; re-sync tab once Next has applied the location
+    queueMicrotask(() => applyTabFromHash());
+  }, [pathname, applyTabFromHash]);
 
   const overlayEl =
     openProject && mounted && typeof document !== "undefined" ? (

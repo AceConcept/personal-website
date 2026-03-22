@@ -88,6 +88,10 @@ export default function Navbar() {
         atencium-ui
       </a>
       <div className="navbarLinks">
+        {/*
+          Use native <a> for /#… links so the browser updates location.hash and fires
+          hashchange (Next.js <Link> client navigation often skips that on same route).
+        */}
         <a href="/#gallery">Gallery</a>
         <a href="/#design">Design</a>
         <a href="/#dev-projects">Dev Projects</a>
